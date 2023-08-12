@@ -9,7 +9,10 @@ public class MyBot : IChessBot
 
         Random random = new Random();
 
+        int[] pieceValues = { 0, 100, 300, 300, 500, 900, 10000 };
+
         Move theTwoHundreddIqMove = moves[random.Next(moves.Length)];
+        int highestValueCapture = 0;
 
         foreach (var move in moves)
         {
@@ -17,6 +20,15 @@ public class MyBot : IChessBot
             {
                 theTwoHundreddIqMove = move;
                 break;
+            }
+
+            Piece capturedPiece = board.GetPiece(move.TargetSquare);
+            int capturedPieceValue = pieceValues[(int)capturedPiece.PieceType];
+
+            if (capturedPieceValue > highestValueCapture)
+            {
+                theTwoHundreddIqMove = move;
+                highestValueCapture = capturedPieceValue; 
             }
         }
         return theTwoHundreddIqMove;
@@ -30,5 +42,15 @@ public class MyBot : IChessBot
         board.UndoMove(move);
         return ggwp;
 
+    }
+
+    private void MonteCarloSearch(Board board, Move move) { 
+        //1. Selection
+
+        //2. Expansion
+
+        //3.Rollout
+
+        //4.BackPropagation
     }
 }
