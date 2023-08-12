@@ -13,7 +13,8 @@ public class MyBot : IChessBot
 
         foreach (var move in moves)
         {
-            if (CheckIfCanCheckMate(board, move)){
+            if (CheckIfCanCheckMate(board, move))
+            {
                 theTwoHundreddIqMove = move;
                 break;
             }
@@ -22,7 +23,8 @@ public class MyBot : IChessBot
     }
 
 
-    private bool CheckIfCanCheckMate(Board board, Move move) {
+    private bool CheckIfCanCheckMate(Board board, Move move)
+    {
         board.MakeMove(move);
         bool ggwp = board.IsInCheckmate();
         board.UndoMove(move);
